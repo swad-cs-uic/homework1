@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test:ui": "vitest --ui",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "concurrently 'npm run start' 'vitest run --reporter verbose' --kill-others --success first",
     "postinstall": "node ./database/setupDB.js",
     "new": "concurrently 'npm run start' 'vitest run --reporter json --reporter default --outputFile.json=vitest_result.json' --kill-others --success first"
