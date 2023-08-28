@@ -113,10 +113,6 @@ app.get("/get_prompt_list", authenticateInternal(), async (req, res) => {
   }
 });
 
-// /*
-//  * POST ENDPOINTS
-//  */
-
 app.post("/create_user", async (req, res) => {
   try {
     // Parse the data from the request

@@ -14,9 +14,6 @@ sqlite
     db = dbConn;
   });
 
-// UPDATE
-// Implementation is vague, if user does not exists then function should return false, whereas it return false in case of existence
-
 async function checkUserExists(emailId) {
   queryString = "SELECT * FROM users where email=?";
   try {

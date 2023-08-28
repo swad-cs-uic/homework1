@@ -1,5 +1,4 @@
 // Import Modules Required to setup passport local stragegy
-const { doesNotMatch } = require("assert");
 const crypto = require("crypto");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -18,17 +17,6 @@ function passportInit() {
     new LocalStrategy(
       { usernameField: "emailId", passwordField: "password" },
       (emailId, password, next) => {
-        /**
-         * This code space is used to initialize passport strategy
-         * The Local Strategy takes in two arguments emailId and password which will be used to setup autheticate user
-         * 1. For authenticating a user, you should first check if the user exists and and then fetch data about user (like emailId, encrypted password, etc )
-         *    ( For this you can make use of the crudOperations provided)
-         * 2. Check if the password matches with what is stored in the database (i.e. the encrypted password in database is same as password entered by the user on screen)
-         * 3. If a match is found, pass the control to the next middleware. Call the next middleware by passing two arguments (err, information).
-         *    Pass-in data if its a valid user Else pass false for the information param.
-         * Hint -You could leverage validPassword, genPassword, etc helper functions for performing above tasks
-         */
-
         // Check if the user exists and get the data
         // Validate the password with the hash stored
         // Call the middleware
@@ -56,7 +44,6 @@ function passportInit() {
  * derializeUser functions does the opposite of finding if there exists a valid user **
  */
 passport.serializeUser((data, next) => {
-  //TO DO - Call the middleware with the data's attribute that you want to be stored in the express session
   next(null, data);
 });
 
@@ -65,11 +52,6 @@ passport.serializeUser((data, next) => {
 // Here the 'data' is the value that is stored in the express session under the passport field ( This is the same data that you store when serialize method is called )
 passport.deserializeUser(async (data, next) => {
   try {
-    // TO DO - Fetch the data about the user and if the user exists then return data else return false
-
-    // FIX
-    // The data being stored in DB has no fields of lastName and firstName, but they are required for crudOperations.checkUser() function,
-    // extraction being done explicitly
     const [firstName, lastName] = data.name.split(" ");
     const res = await crudOperations.checkUser(
       data.email,

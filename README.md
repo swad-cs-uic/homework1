@@ -88,7 +88,7 @@ Note - For any issues encountered on the web pages, check the server logs for mo
 ## ToDo For HW1
 
 1. The heavy work of setting up the authentication has been done for you. You do not need to create or manage any sessions. Also certain middlewares have been provided for you for your assist.
-   Your task to use the appropriate middleware to complete the functionality as asked. You need to modify `server.js` to enable session based authentication and update the code to make the routes completely functional. Check the `TO DO` section in those files along with more comments for the specifics.
+   Your task to just use the appropriate middleware to complete the functionality as asked. You need to modify `server.js` to enable session based authentication and update the code to make the routes completely functional. Check the `TO DO` section in those files along with more comments for the specifics.
    - Try to understand the logic in server.js.
    - Look for other routes how are they being implemented and seek any reference that can be helpful for you.
 2. Apart from that, you also have to complete the `populateHistory()` function inside the `./public/dashboardHandler.js` file. This functions is used to fetch all your user prompts and display them over the dashboard.
@@ -119,4 +119,4 @@ After you are confident that your code works, you can push the code to GitHub, a
 
 ## Due Date
 
-This assignment is due at 11:59 PM on Friday, September 08th. We will release detailed test cases by Monday, September 12th. Extra credit in the course is available for anyone who writes meaningful test cases and submits them to the TA by Sunday, September 11th.
+This assignment is due at 11:59 PM on Friday, September 08th. Extra credit in the course is available for anyone who writes meaningful test cases and submits them to the TA by Sunday, September 3rd.
