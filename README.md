@@ -95,7 +95,11 @@ Note - For any issues encountered on the web pages, check the server logs for mo
 
 ## Checking your work
 
-Once you have completed with your work , you should be able to create a user and login. Once you login, the `req.session`, should have an extra passport entry. This confirms that you are able to authenticate using passport.js. Visit other routes and see if you able to access them. Now logout of the application and try directly accessing a route where you have set-up/completed authentication (e.g. http://localhost:3000/dashboard). This should take you to the `login` page.
+### Running testcases locally
+
+- Make sure your server is running. Else start your server by running `npm run start`
+- Open another terminal and run `npm run test`. Vitest should start and give you details of the testcases/testfiles passing / failing.
+  Once you have completed with your work , you should be able to create a user and login. Once you login, the `req.session`, should have an extra passport entry. This confirms that you are able to authenticate using passport.js. Visit other routes and see if you able to access them. Now logout of the application and try directly accessing a route where you have set-up/completed authentication (e.g. http://localhost:3000/dashboard). This should take you to the `login` page.
 
 To check `populateHistory()`, go to `/dashboard` by logging in and then create some prompts. This should list all the prompts you have created ( plus any previous ones if any ). Now press delete on any prompt and you shouldn't be able to view that same prompt.
 
