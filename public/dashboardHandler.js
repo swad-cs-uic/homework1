@@ -145,21 +145,21 @@ async function chat() {
       delete inputElement.dataset.editId; // Clear the edit ID
     }
   } else {
-    // const response = await fetch(
-    //   "https://official-joke-api.appspot.com/random_joke",
-    //   {
-    //     method: "GET",
-    //   }
-    // );
+    const response = await fetch(
+      "https://official-joke-api.appspot.com/random_joke",
+      {
+        method: "GET",
+      }
+    );
 
-    // if (response.status === 200) {
-    //   const data = await response.json();
-    //   console.log(data);
-    //   let joke = data.setup + "....." + data.punchline;
-    //   outputElement.textContent = joke;
-    // } else {
-    //   outputElement.textContent = "Something's Cooking!";
-    // }
+    if (response.status === 200) {
+      const data = await response.json();
+      console.log(data);
+      let joke = data.setup + "....." + data.punchline;
+      outputElement.textContent = joke;
+    } else {
+      outputElement.textContent = "Something's Cooking!";
+    }
 
     if (inputElement.value) {
       console.log(inputElement.value);
