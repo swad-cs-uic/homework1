@@ -23,7 +23,7 @@ The webapplication that is provided to you has the following features -
 2. Update user details ('/update_user')
 3. Login ('/login')
 4. Create a new prompt ('/create_user_prompt')
-5. Update a user prompt ('/approve_service_request').
+5. Update a user prompt ('/update_user_prompt').
 6. Delete a user prompt ('/delete_user_prompt').
 
 The application maintains a SQLite database facilitating authentication and preserving history of user generated prompts.

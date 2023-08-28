@@ -106,10 +106,9 @@ test("(2 pts) Test after logging-in - Creating a new prompt", async function () 
   // Check if the user was created in the database
 });
 
-// Now approve a service request as a admin
 // Cancel Request as a admin and the try doing the same with customer
 test("(2 pts) Test after logging-in - /update_user_prompt", async function () {
-  // Create a service request
+  // Create a new prompt
   const promptId = await createNewPrompt("admin@mail.com");
   // console.log(promptId);
   // Get Cookies
@@ -124,7 +123,7 @@ test("(2 pts) Test after logging-in - /update_user_prompt", async function () {
     .set("Content-type", "application/json")
     .send(payload);
 
-  expect(response.text).toBe('{"msg":true}'); // This service request should get completed as this is done using admin cookie (cookieGlobal)
+  expect(response.text).toBe('{"msg":true}');
 });
 
 test("(2 pts) Test after logging-in - /delete_user_prompt", async function () {

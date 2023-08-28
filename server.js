@@ -108,7 +108,7 @@ app.get("/get_prompt_list", authenticateInternal(), async (req, res) => {
   } catch (error) {
     console.error(error);
     res.json({
-      msg: "There was some issue with fetching service request list. Check server logs",
+      msg: "There was some issue with fetching prompt list. Check server logs",
     });
   }
 });
@@ -248,7 +248,7 @@ app.put("/update_user_prompt/:id", authenticateInternal(), async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      msg: "There was some issue in updating the service request. Check server logs.",
+      msg: "There was some issue in updating the prompt. Check server logs.",
     });
   }
 });

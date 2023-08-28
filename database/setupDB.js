@@ -7,7 +7,7 @@ let db;
  * 1. Create a DB file if there doesn't exist already
  * 2. Connect to the Database
  * 3. Create users table
- * 4. Create service_request table
+ * 4. Create prompt_history table
  */
 
 try {
@@ -69,7 +69,7 @@ function createDatabase(callback) {
   // })
 }
 
-// Creates service_request table
+// Creates prompt_history table
 function createPromptHistoryTable(callback) {
   sqlQuery =
     "CREATE TABLE prompt_history (" +

@@ -1,6 +1,6 @@
 /**
  * Contains CRUD functions for operating users data
- * Also functions for creating, completing , cancelling a service request
+ * Also functions for creating, updating , deleting a prompt
  *
  */
 
@@ -101,7 +101,7 @@ async function updateUser(firstname, lastname, emailId) {
   }
 }
 
-// Function to create service request in database
+// Function to create prompt in database
 // return true or false
 async function createPrompt(name, prompt, email) {
   if (
@@ -119,7 +119,7 @@ async function createPrompt(name, prompt, email) {
   return dbResult;
 }
 
-// Function to get list of service request
+// Function to get list of prompts
 // return list or error with false
 async function getPromptList(email) {
   console.log("Getting Prompt for Email:", email);
@@ -127,8 +127,7 @@ async function getPromptList(email) {
   return dbResult;
 }
 
-// Function to approve a service request
-// return true if the logged in user has the "service-worker / Admin" permission
+// Function to update a prompt
 async function updatePrompt(id, incomingUpdatedPrompt) {
   try {
     const dbResult = await dbOperations.updateExistingPrompt(
@@ -142,9 +141,7 @@ async function updatePrompt(id, incomingUpdatedPrompt) {
   }
 }
 
-// Function to cancel a service request
-// return true if the logged in is a "customer / owner"
-// ** Any customer can cancel any request
+// Function to delete a prompt
 async function deletePrompt(id) {
   try {
     console.log(id);

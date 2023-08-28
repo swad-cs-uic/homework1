@@ -42,7 +42,7 @@ afterAll(async () => {
   if (dbConn != undefined) {
     // // console.log("Connected to Database for Testing")
   }
-  // console.log("Erasing data from service_request Table")
+  // console.log("Erasing data from prompt_history Table")
   await dbConn.run("DELETE FROM prompt_history", []);
   await dbConn.run("DELETE FROM users", []);
 });
