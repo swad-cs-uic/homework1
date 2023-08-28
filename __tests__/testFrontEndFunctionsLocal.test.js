@@ -35,7 +35,7 @@ beforeAll(async () => {
   if (dbConn != undefined) {
     // console.log("Connected to Database for TEsting");
   }
-});
+}, 60000);
 
 afterAll(async () => {
   await browser.close();

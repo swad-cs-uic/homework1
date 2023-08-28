@@ -20,7 +20,7 @@ beforeAll(async () => {
     .post("/create_user")
     .set("Content-type", "application/json")
     .send(payload);
-}, 25000);
+}, 60000);
 
 afterAll(async () => {
   // console.log("Erasing data from prompt_history Table");
