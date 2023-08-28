@@ -6,9 +6,6 @@ github_link: https://classroom.github.com/a/8Hso8Pyq
 release: 2023-08-28
 ---
 
-import Link from '@docusaurus/Link';
-import site from '@site/course.json'
-
 # Homework1 - Crud App
 
 This Homework is about provisioning a CRUD App that is provided to you with a session based authentication using passport.js. Once you are done, please submit the github repository on Gradescope.
@@ -60,13 +57,13 @@ This homework uses ExpressJS for quick and easy server setup along with SQlite t
 3. package.json - JSON file containing information about the project, dependencies, starter commands, etc
 4. .gitignore - Contains information on what should be ignored from the local project while uploading to Git Repository
 
-### New Files Used for setting Passport.js and Database connection and delivering JS over browser.
+#### New Files Used for setting Passport.js and Database connection and delivering JS over browser.
 
-7. passportAuth.js (**IMPORTANT FILE**) - File containing implementation for local strategy and functions to serialize and deserialize the user data
-8. dbFunctions.js - Database connection and SQL Statements for performing CRUD Operations
-9. crudOperationsFunctions.js - Intermediate file containing functions which will call functions in 'dbFunctions.js'. This approach is helpful to do any sanity checks/ data manipulation before hitting database queries
-10. views folder - The views folder contains all the .html pages that are used for this web application
-11. public folder - contains all the JS enabling frontend logics and styling
+5. passportAuth.js (**IMPORTANT FILE**) - File containing implementation for local strategy and functions to serialize and deserialize the user data
+6. dbFunctions.js - Database connection and SQL Statements for performing CRUD Operations
+7. crudOperationsFunctions.js - Intermediate file containing functions which will call functions in 'dbFunctions.js'. This approach is helpful to do any sanity checks/ data manipulation before hitting database queries
+8. views folder - The views folder contains all the .html pages that are used for this web application
+9. public folder - contains all the JS enabling frontend logics and styling
 
 ## Exploring the webapplication
 
