@@ -46,7 +46,7 @@ Connected to the database HW1_DB.db
 ```
 
 For stopping Nodejs application, press Ctrl + c
-You can also setup nodemon for easier development See here [https://www.npmjs.com/package/nodemon] (https://www.npmjs.com/package/nodemon)
+You can also setup nodemon for easier development See here [https://www.npmjs.com/package/nodemon]
 
 ## Project Details
 
@@ -74,7 +74,7 @@ This homework uses ExpressJS for quick and easy server setup along with SQlite t
 
 Once you are successfully able to start the server, go to the landing page by accessing 'http://localhost:3000/' page. Please replace the `port` with the port that you have used to setup the server. If you are able to see this page, you have successfully started the application. Start by creating a user
 
-1. Create a user by accessing 'http://localhost:8080/create-user'. There are two types of user - admin and users. There is no difference in functionality for the two and there is no impact on chosing either of it.
+1. Create a user by accessing 'http://localhost:3000/create-user'. There are two types of user - admin and users. There is no difference in functionality for the two and there is no impact on chosing either of it.
 2. Once the user is created, Login using those credentials. This should take you to the dashboard. Note - With the code provided you would be able to login with the created email and password. However you may still be able to visit the /dashboard page as routes are not properly setup. Look into server.js for additional comments.
 3. Create a user prompt in the input bar at the bottom.
 4. Once you click the send button or press enter, the entered prompt should come up over the history pane in the left.
