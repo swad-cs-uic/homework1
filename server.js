@@ -113,6 +113,25 @@ app.get("/get_prompt_list", authenticateInternal(), async (req, res) => {
   }
 });
 
+app.get("/get_prompt_id", authenticateInternal(), async (req, res) => {
+  try {
+    const { email } = req.user;
+    const data = await crudOperations.getPromptId(email);
+
+    if (data != null && data !== false) {
+      // console.log("Fetched Data Successfully");
+      res.json({ msg: data[0].id });
+    } else {
+      res.json({ msg: [] });
+    }
+  } catch (error) {
+    console.error(error);
+    res.json({
+      msg: "There was some issue with fetching prompt ID. Check server logs",
+    });
+  }
+});
+
 app.post("/create_user", async (req, res) => {
   try {
     // Parse the data from the request
@@ -281,6 +300,42 @@ app.delete(
     }
   }
 );
+
+app.delete("/delete_all_prompts", authenticateInternal(), async (req, res) => {
+  try {
+    const cancellationResult = await crudOperations.deleteAllPrompts();
+
+    if (cancellationResult === true) {
+      res.json({ msg: true });
+    } else {
+      console.log(cancellationResult);
+      res.json({ msg: false });
+    }
+  } catch (error) {
+    console.error(error);
+    res.json({
+      msg: "There was an issue in deleting the prompt. Check server logs",
+    });
+  }
+});
+
+app.delete("/delete_all_users", authenticateInternal(), async (req, res) => {
+  try {
+    const cancellationResult = await crudOperations.deleteAllUsers();
+
+    if (cancellationResult === true) {
+      res.json({ msg: true });
+    } else {
+      console.log(cancellationResult);
+      res.json({ msg: false });
+    }
+  } catch (error) {
+    console.error(error);
+    res.json({
+      msg: "There was an issue in deleting the prompt. Check server logs",
+    });
+  }
+});
 
 // Application setup / entry to create a server on a port which is given as an argument
 app.listen(port, () => {

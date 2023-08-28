@@ -1,5 +1,6 @@
 let request = require("supertest");
-const requestLive = request("https://hw1-3m3b.onrender.com");
+import { website } from "../student.json";
+const requestLive = request(website);
 import { beforeAll, afterAll, test, expect } from "vitest";
 const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
@@ -19,51 +20,51 @@ beforeAll(async () => {
     .post("/create_user")
     .set("Content-type", "application/json")
     .send(payload);
-});
+}, 25000);
 
 afterAll(async () => {
   // console.log("Erasing data from prompt_history Table");
 });
 
-test("(1 pts) Test for Authentication (Not Logged-in ) - /update-user ", async function () {
+test("(1 pts) Live Test for Authentication (Not Logged-in ) - /update-user ", async function () {
   const response = await requestLive.get("/update-user");
   expect(response.status).toBe(302);
   expect(response.headers.location).toBe("/");
 });
 
-test("(1 pts) Test for Authentication (Not Logged-in ) - /dashboard ", async function () {
+test("(1 pts) Live Test for Authentication (Not Logged-in ) - /dashboard ", async function () {
   const response = await requestLive.get("/dashboard");
   expect(response.status).toBe(302);
   expect(response.headers.location).toBe("/");
 });
 
-test("(1 pts) Test for Authentication (Not Logged-in ) - /get_prompt_list ", async function () {
+test("(1 pts) Live Test for Authentication (Not Logged-in ) - /get_prompt_list ", async function () {
   const response = await requestLive.get("/get_prompt_list");
   expect(response.text).toBe('{"msg":false}');
 });
 
 // POST
-test("(1 pts) Test for Authentication (Not Logged-in ) - /update_user ", async function () {
+test("(1 pts) Live Test for Authentication (Not Logged-in ) - /update_user ", async function () {
   const response = await requestLive.post("/update_user");
   expect(response.text).toBe('{"msg":false}');
 });
 
-test("(1 pts) Test for Authentication (Not Logged-in ) - /create_user_prompt ", async function () {
+test("(1 pts) Live Test for Authentication (Not Logged-in ) - /create_user_prompt ", async function () {
   const response = await requestLive.post("/create_user_prompt");
   expect(response.text).toBe('{"msg":false}');
 });
 
-test("(1 pts) Test for Authentication (Not Logged-in ) - /update_user_prompt ", async function () {
+test("(1 pts) Live Test for Authentication (Not Logged-in ) - /update_user_prompt ", async function () {
   const response = await requestLive.put("/update_user_prompt/1");
   expect(response.text).toBe('{"msg":false}');
 });
 
-test("(1 pts) Test for Authentication (Not Logged-in ) - /delete_user_prompt ", async function () {
+test("(1 pts) Live Test for Authentication (Not Logged-in ) - /delete_user_prompt ", async function () {
   const response = await requestLive.delete("/delete_user_prompt/2");
   expect(response.text).toBe('{"msg":false}');
 });
 
-test("(2 pts) Test for logging-in - /login", async function () {
+test("(2 pts) Live Test for logging-in - /login", async function () {
   const payload = JSON.stringify({
     emailId: "admin@mail.com",
     password: "password123",
@@ -77,7 +78,7 @@ test("(2 pts) Test for logging-in - /login", async function () {
   expect(response.headers.location).toBe("/dashboard");
 });
 
-test("(2 pts) Test after logging-in - /update-user", async function () {
+test("(2 pts) Live Test after logging-in - /update-user", async function () {
   const loginCookieAdmin = await getLoginCookie();
   const response = await requestLive
     .get("/update-user")
@@ -87,7 +88,7 @@ test("(2 pts) Test after logging-in - /update-user", async function () {
   );
 });
 
-test("(2 pts) Test after logging-in - Creating a new prompt", async function () {
+test("(2 pts) Live Test after logging-in - Creating a new prompt", async function () {
   const loginCookieAdmin = await getLoginCookie();
 
   const payload = {
@@ -107,7 +108,7 @@ test("(2 pts) Test after logging-in - Creating a new prompt", async function () 
 });
 
 // Cancel Request as a admin and the try doing the same with customer
-test("(2 pts) Test after logging-in - /update_user_prompt", async function () {
+test("(3 pts) Live Test after logging-in - /update_user_prompt", async function () {
   // Create a new prompt
   const promptId = await createNewPrompt("admin@mail.com");
   // console.log(promptId);
@@ -126,7 +127,7 @@ test("(2 pts) Test after logging-in - /update_user_prompt", async function () {
   expect(response.text).toBe('{"msg":true}');
 });
 
-test("(2 pts) Test after logging-in - /delete_user_prompt", async function () {
+test("(3 pts) Live Test after logging-in - /delete_user_prompt", async function () {
   const promptId = await createNewPrompt("admin@mail.com");
 
   // Get Cookies
@@ -145,7 +146,7 @@ async function createNewPrompt(email) {
   const payload = {
     email: email,
     name: "AdminFirstName AdminLastName",
-    prompt: "Are you really believing that. Commonnn! <3",
+    prompt: "Were you really believing that. Commonnn! <3",
   };
 
   const response = await requestLive
@@ -154,12 +155,13 @@ async function createNewPrompt(email) {
     .set("Content-type", "application/json")
     .send(payload);
 
-  const dbRes = await dbConn.get(
-    "Select id from prompt_history where email=?",
-    [email]
-  );
-  // console.log(dbRes);
-  return dbRes.id;
+  const responseID = await requestLive
+    .get("/get_prompt_id")
+    .query({ email: email })
+    .set("Cookie", [loginCookieAdmin]);
+
+  const ID = JSON.parse(responseID.text).msg;
+  return ID;
 }
 
 async function getLoginCookie() {

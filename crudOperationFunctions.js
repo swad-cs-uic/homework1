@@ -119,10 +119,14 @@ async function createPrompt(name, prompt, email) {
   return dbResult;
 }
 
+async function getPromptId(email) {
+  const dbResult = await dbOperations.getPromptId(email);
+  return dbResult;
+}
 // Function to get list of prompts
 // return list or error with false
 async function getPromptList(email) {
-  console.log("Getting Prompt for Email:", email);
+  // console.log("Getting Prompt for Email:", email);
   const dbResult = await dbOperations.getPromptList(email);
   return dbResult;
 }
@@ -144,12 +148,36 @@ async function updatePrompt(id, incomingUpdatedPrompt) {
 // Function to delete a prompt
 async function deletePrompt(id) {
   try {
-    console.log(id);
+    // console.log(id);
     const dbResult = await dbOperations.deleteExistingPrompt(id);
-    console.log(dbResult);
+    // console.log(dbResult);
     return dbResult;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+    return null;
+  }
+}
+
+async function deleteAllPrompts(id) {
+  try {
+    // console.log(id);
+    const dbResult = await dbOperations.deleteAllPrompts();
+    // console.log(dbResult);
+    return dbResult;
+  } catch (error) {
+    // console.log(error);
+    return null;
+  }
+}
+
+async function deleteAllUsers(id) {
+  try {
+    // console.log(id);
+    const dbResult = await dbOperations.deleteAllUsers();
+    // console.log(dbResult);
+    return dbResult;
+  } catch (error) {
+    // console.log(error);
     return null;
   }
 }
@@ -163,3 +191,6 @@ exports.createPrompt = createPrompt;
 exports.getPromptList = getPromptList;
 exports.updatePrompt = updatePrompt;
 exports.deletePrompt = deletePrompt;
+exports.getPromptId = getPromptId;
+exports.deleteAllPrompts = deleteAllPrompts;
+exports.deleteAllUsers = deleteAllUsers;

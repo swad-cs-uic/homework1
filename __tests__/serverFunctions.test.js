@@ -1,5 +1,4 @@
 // This file contains unit tests for functions inside the serverFunction.js file
-// Unit test are performed by JEST testing framework. Link - https://jestjs.io/
 
 import { test, expect } from "vitest";
 const serverFunctions = require("../serverFunctions.js");

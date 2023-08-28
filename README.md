@@ -8,7 +8,7 @@ release: 2023-08-28
 
 # Homework1 - Crud App
 
-This Homework is about provisioning a CRUD App that is provided to you with a session based authentication using passport.js. Once you are done, please submit the github repository on Gradescope.
+This Homework is about provisioning a CRUD App that is provided to you with a session based authentication using passport.js. Once you are done, please submit the github repository on Gradescope. By the end of this assignment you will be having your own Vanilla 484-GPT ready on the internet.
 
 ## Overview
 
@@ -94,13 +94,22 @@ Note - For any issues encountered on the web pages, check the server logs for mo
 
 ### Running testcases locally
 
-- Make sure your server is running. Else start your server by running `npm run start`
-- Open another terminal and run `npm run test`. Vitest should start and give you details of the testcases/testfiles passing / failing.
+- Run `npm run test`. Vitest should start and give you details of the testcases/testfiles passing / failing.
   Once you have completed with your work , you should be able to create a user and login. Once you login, the `req.session`, should have an extra passport entry. This confirms that you are able to authenticate using passport.js. Visit other routes and see if you able to access them. Now logout of the application and try directly accessing a route where you have set-up/completed authentication (e.g. http://localhost:3000/dashboard). This should take you to the `login` page.
 
 To check `populateHistory()`, go to `/dashboard` by logging in and then create some prompts. This should list all the prompts you have created ( plus any previous ones if any ). Now press delete on any prompt and you shouldn't be able to view that same prompt.
 
 Try editing an existing prompt by clicking on the prompt. The prompt gets loaded in the input bar. Make any update to the prompt in the input bar and click send button or press enter. You should be able to see the updated prompt in realtime.
+
+## Deploying your Application.
+
+- We will be using Render for deploying our WebApplication.
+- Create an account over Render.com and connect your Github repository with Render.
+- Select New option and then chose Web Service.
+- Connect your repository.
+- Write a name for your Service and under the Build command, `update yarn to npm install`
+- Once deployed you will get the hosted APP URL.
+- Take this URL and update this in student.json.
 
 ## Submitting your work
 
@@ -111,8 +120,10 @@ After you are confident that your code works, you can push the code to GitHub, a
 | Task                                                                 | Points |
 | -------------------------------------------------------------------- | ------ |
 | Setting up routes for server (adding middlewares, completing routes) | 19     |
+| Server Functionality working over hosted website                     | 19     |
 | Completing server helper functions                                   | 3      |
 | Completing front-end JS functions and validating front-end flow      | 13     |
+| Front-end functionality working over hosted website                  | 13     |
 
 ## Due Date
 

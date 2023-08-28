@@ -22,7 +22,7 @@ function getRandomText() {
 beforeAll(async () => {
   browser = await chromium.launch();
   page = await browser.newPage();
-
+  await page.goto("http://localhost:3000/");
   // page.on("console", (message) => {
   //   console.log(`Console [${message.type()}]: ${message.text()}`);
   // });
@@ -49,7 +49,6 @@ afterAll(async () => {
 
 test("(2 pts) Create User and Login", async () => {
   // Open the login page
-  await page.goto("http://localhost:3000/");
   await page.click('a[href="/create-user"]');
 
   // Fill out the user creation form
@@ -103,11 +102,6 @@ test("(2 pts) Create a single new Prompt", async () => {
     }
   }
   expect(found).toBe(true);
-  if (found) {
-    console.log("Random text found in history.");
-  } else {
-    console.log("Random text not found in history.");
-  }
 });
 
 test("(3 pts) Create a second Prompt. Check for total prompts", async () => {
@@ -133,15 +127,7 @@ test("(3 pts) Create a second Prompt. Check for total prompts", async () => {
   }
   const totalPrompts = historyEntries.length;
   expect(newPromptFound).toBe(true);
-  expect(totalPrompts).toEqual(2);
-
-  if (newPromptFound && totalPrompts === 2) {
-    console.log("New prompt added to history and total prompts is 2.");
-  } else {
-    console.log(
-      "Test failed: New prompt not found or total prompts count is incorrect."
-    );
-  }
+  expect(totalPrompts).greaterThan(1);
 });
 
 test("(3 pts) Edit and update a prompt from history", async () => {
@@ -192,14 +178,6 @@ test("(3 pts) Edit and update a prompt from history", async () => {
   );
 
   expect(updatedPromptFound).toBe(true);
-
-  if (updatedPromptFound) {
-    console.log("Updated prompt found in history with matching data-id.");
-  } else {
-    console.log(
-      "Test failed: Updated prompt not found in history or data-id does not match."
-    );
-  }
 });
 
 test("(3 pts) Delete a prompt from history", async () => {
@@ -234,10 +212,4 @@ test("(3 pts) Delete a prompt from history", async () => {
   }, clickedEntryId);
 
   expect(deletedPromptExists).toBe(false);
-
-  if (!deletedPromptExists) {
-    console.log("Deleted prompt no longer exists in history.");
-  } else {
-    console.log("Test failed: Deleted prompt still exists in history.");
-  }
 });

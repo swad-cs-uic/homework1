@@ -79,7 +79,23 @@ async function updateUser(firstname, lastname, email) {
       email,
       email,
     ]);
-    console.log(result);
+    // console.log(result);
+    if (result.changes > 0) {
+      return true;
+    }
+    return false;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+}
+
+async function deleteUser(email) {
+  try {
+    queryString = "DELETE FROM users ";
+    queryString += " where email=?";
+
+    const result = await db.run(queryString, [email]);
     if (result.changes > 0) {
       return true;
     }
@@ -96,7 +112,7 @@ async function createNewPrompt(name, prompt, email) {
     queryString += " VALUES(?, ?, ?);";
 
     const result = await db.run(queryString, [name, prompt, email]);
-    console.log("Result for new prompt creation", result);
+    // console.log("Result for new prompt creation", result);
     if (result.changes > 0) {
       return true;
     }
@@ -109,7 +125,7 @@ async function createNewPrompt(name, prompt, email) {
 
 async function getPromptList(email) {
   try {
-    console.log("DB file", email);
+    // console.log("DB file", email);
     queryString = "SELECT * FROM prompt_history where email=?";
 
     const result = await db.all(queryString, [email]);
@@ -151,6 +167,48 @@ async function deleteExistingPrompt(id) {
   }
 }
 
+async function deleteAllUsers() {
+  try {
+    queryString = "DELETE FROM users";
+    const result = await db.run(queryString, []);
+    if (result.changes > 0) {
+      return true;
+    }
+    return false;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+}
+
+async function deleteAllPrompts() {
+  try {
+    queryString = "DELETE FROM prompt_history";
+    const result = await db.run(queryString, []);
+    if (result.changes > 0) {
+      return true;
+    }
+    return false;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+}
+async function getPromptId(email) {
+  try {
+    queryString = "SELECT id FROM prompt_history where email=?";
+
+    const result = await db.all(queryString, [email]);
+    console.log(result);
+    if (result != []) {
+      return result;
+    }
+    return false;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+}
 module.exports = {
   checkUserExists,
   createUser,
@@ -160,4 +218,7 @@ module.exports = {
   getPromptList,
   updateExistingPrompt,
   deleteExistingPrompt,
+  getPromptId,
+  deleteAllUsers,
+  deleteAllPrompts,
 };

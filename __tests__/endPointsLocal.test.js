@@ -179,7 +179,7 @@ async function createNewPrompt(email) {
   const payload = {
     email: email,
     name: "AdminFirstName AdminLastName",
-    prompt: "Are you really believing that. Commonnn! <3",
+    prompt: "Were you really believing that. Commonnn! <3",
   };
 
   const response = await requestLocal
