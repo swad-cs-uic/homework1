@@ -92,7 +92,6 @@ app.get("/logout", function (req, res, next) {
 });
 
 // TO DO - Complete the route to return the Prompt Lists.
-// Lets start with your first GET route funtionality.
 // 1. Here the middleware has been added for you which checks if you are authenticated or not. If yes, continues with execution else sends response as { "msg": false }
 // 2. Look out inside crudOperations file. Use a function that returns you the Prompt List.
 // 3. Once found look what needs to be passed as per the function signature. Maybe you can extract that required argument from request obj (req)?

@@ -32,6 +32,7 @@ async function populateHistory() {
         const deleteButton = document.createElement("button");
         deleteButton.innerHTML = "&#128465;";
 
+        // TO DO Complete the delete Prompt functionality of the element.
         // 1. Attach an event listener to the click of the deleteButton. Look at the textField for your reference.
         // 2. The event listener method takes a callback function as its argument.Use an asynchronous function and inside the function definition:
         //    2.1 Get the attribute from "data-id", say id.
