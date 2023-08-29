@@ -40,7 +40,7 @@ function getRandomText() {
 beforeAll(async () => {
   browser = await chromium.launch();
   page = await browser.newPage();
-  await page.goto(website);
+  await page.goto(website, { timeout: 60000 });
 
   // page.on("console", (message) => {
   //   console.log(`Console [${message.type()}]: ${message.text()}`);
