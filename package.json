@@ -6,9 +6,9 @@
   "scripts": {
     "test:ui": "vitest --ui",
     "start": "node server.js",
-    "test": "concurrently 'npm run start' 'vitest run --reporter verbose' --kill-others --success first",
+    "test": "concurrently \"npm run start\" \"vitest run --reporter verbose\" --kill-others --success first",
     "postinstall": "node ./database/setupDB.js",
-    "new": "concurrently 'npm run start' 'vitest run --reporter json --reporter default --outputFile.json=vitest_result.json' --kill-others --success first"
+    "new": "concurrently \"npm run start\" \"vitest run --reporter json --reporter default --outputFile.json=vitest_result.json\" --kill-others --success first"
   },
   "author": "",
   "license": "ISC",
